@@ -1,9 +1,9 @@
 const express = require('express');
-const BodyParser = require('body-parser');
+const BodyParser = require('body-parser'); // this is a module for using post request in our app
 
-const app = express();
+const app = express(); // we are creating a new instance of express
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // we are using the ejs module to our app
 
 
 
@@ -11,11 +11,11 @@ app.listen(3000, function(){
 	console.log("The server is runnning on port 3000");
 });
 
-app.get('/', function(req, res){
+app.get('/', function(req, res){ // this is get request to the "/" route
 	let today;
 	let theDay;
-	let d = new Date();
-	let day = d.getDay();
+	let d = new Date(); // we created a new Date object
+	let day = d.getDay(); // we used the getDay method of Date object // output is 0-6
 	console.log(day);
 	if(day == 0 || day == 6){
 		today = "Weekend";
@@ -50,5 +50,5 @@ app.get('/', function(req, res){
 	}
 
 
-	res.render('list', {today : today, theDay: theDay} );
+	res.render('list', {today : today, theDay: theDay} ); // we render the today and theDay variables to the ejs template list.ejs in views folder
 });
