@@ -12,6 +12,20 @@
 		<h1 style="color: green">Today is <%= today %>!</h1>
 		<h3 style="color: green">And the day today is <%= theDay %>!</h3>
   <%	} %>
+
+  <h1>My Todo List</h1>
+  <ul>
+  	<!-- we iterate the newItems array coming from the server to show on each item in the web page -->
+  <% newItems.forEach(function(item){ %> 
+  	<li><%= item %></li>
+  <% }); %>
+  </ul>
+
+<!-- we created a form to add new item -->
+  <form action="/" method="post">  
+  	<input type="text" name="newItem">
+  	<button type="submit" name="button">Add</button>
+  </form>
 	
 </body>
 </html>

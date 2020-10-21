@@ -3,9 +3,11 @@ const BodyParser = require('body-parser'); // this is a module for using post re
 
 const app = express(); // we are creating a new instance of express
 
+const items = ['Eat Food']; // we created an array to put new items into
+
 app.set('view engine', 'ejs'); // we are using the ejs module to our app
 
-
+app.use(BodyParser.urlencoded({extended:true})); // we use BodyParser obj to be able to use post request and pass data from the web page to the server
 
 app.listen(3000, function(){
 	console.log("The server is runnning on port 3000");
@@ -23,32 +25,20 @@ app.get('/', function(req, res){ // this is get request to the "/" route
 		today = "Weekday";
 	}
 
-	switch(day){
-		case 1:
-			theDay = "Monday";
-			break;
-		case 2:
-			theDay = "Tuesday";
-			break;
-		case 3:
-			theDay = "Wednesday";
-			break;
-		case 4:
-			theDay = "Thursday";
-			break;
-		case 5:
-			theDay = "Friday";
-			break;
-		case 6:
-			theDay = "Saturday";
-			break;
-		case 7:
-			theDay = "Sunday";
-			break;
-		default:
-			theDay = "Undifined Day";
+	var options = {        //second argument that will be used in the Date obj method toLocaleDateString
+		weekday: 'long',
+		day: 'numeric',
+		month: 'long',
 	}
 
+	theDay = d.toLocaleDateString("en-US", options); //it will output for ex "Wednesday. October 21"
 
-	res.render('list', {today : today, theDay: theDay} ); // we render the today and theDay variables to the ejs template list.ejs in views folder
+	res.render('list', {today : today, theDay: theDay, newItems: items}); // we render the today and theDay variables to the ejs template list.ejs in views folder
+});
+
+app.post('/', function(req, res){ 
+	let item = req.body.newItem; // this contains the new item created from the web page 
+	items.push(item); // we added that new item to the items array
+
+	res.redirect('/'); // we redirect to the root route to view the items
 });
