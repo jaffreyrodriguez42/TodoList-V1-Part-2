@@ -9,6 +9,8 @@ app.set('view engine', 'ejs'); // we are using the ejs module to our app
 
 app.use(BodyParser.urlencoded({extended:true})); // we use BodyParser obj to be able to use post request and pass data from the web page to the server
 
+app.use(express.static("public"));
+
 app.listen(3000, function(){
 	console.log("The server is runnning on port 3000");
 });
@@ -25,7 +27,7 @@ app.get('/', function(req, res){ // this is get request to the "/" route
 		today = "Weekday";
 	}
 
-	var options = {        //second argument that will be used in the Date obj method toLocaleDateString
+	let options = {        //second argument that will be used in the Date obj method toLocaleDateString
 		weekday: 'long',
 		day: 'numeric',
 		month: 'long',

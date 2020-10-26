@@ -2,30 +2,38 @@
 <html>
 <head>
 	<title>Todo List</title>
+
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 	<%# this is a comment #%>
-	<% if(theDay === "Saturday" || theDay === "Sunday"){ %>
-		<h1 style="color: blue">Today is <%= today %>!</h1>
-		<h3 style="color: blue">And the day today is <%= theDay %>!</h3>
- <%	}else{ %>
-		<h1 style="color: green">Today is <%= today %>!</h1>
-		<h3 style="color: green">And the day today is <%= theDay %>!</h3>
-  <%	} %>
 
-  <h1>My Todo List</h1>
-  <ul>
-  	<!-- we iterate the newItems array coming from the server to show on each item in the web page -->
-  <% newItems.forEach(function(item){ %> 
-  	<li><%= item %></li>
-  <% }); %>
-  </ul>
+  <div class="box" id="heading">
+      <% if(theDay === "Saturday" || theDay === "Sunday"){ %>
+        <h1>Today is <%= today %>!</h1>
+        <h3>And the day today is <%= theDay %>!</h3>
+     <% }else{ %>
+        <h1>Today is <%= today %>!</h1>
+        <h3>And the day today is <%= theDay %>!</h3>
+      <%  } %>
+  </div>
 
-<!-- we created a form to add new item -->
-  <form action="/" method="post">  
-  	<input type="text" name="newItem">
-  	<button type="submit" name="button">Add</button>
-  </form>
-	
+  <div class="box">
+    <!-- <h2>My Todo List</h2> -->
+        <!-- we iterate the newItems array coming from the server to show on each item in the web page -->
+      <% newItems.forEach(function(item){ %> 
+      <div class="item">
+          <input type="checkbox">
+          <p><%= item %></p>
+      </div>
+      <% }); %>
+
+      <!-- we created a form to add new item -->
+        <form class="item" action="/" method="post">  
+          <input type="text" name="newItem" autocomplete="off" placeholder="New Item">
+          <button type="submit" name="button">+</button>
+        </form>
+  </div>
+
 </body>
 </html>
