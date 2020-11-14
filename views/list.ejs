@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Todo List</title>
-
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
+  <%- include("header"); -%>
+   
 	<%# this is a comment #%>
 
   <div class="box" id="heading">
-      <% if(theDay === "Saturday" || theDay === "Sunday"){ %>
+      <% if(listTitle === "Saturday" || listTitle === "Sunday"){ %>
         <h1>Today is <%= today %>!</h1>
-        <h3>And the day today is <%= theDay %>!</h3>
+        <h3>And the list title today is <%= listTitle %>!</h3>
      <% }else{ %>
         <h1>Today is <%= today %>!</h1>
-        <h3>And the day today is <%= theDay %>!</h3>
+        <h3>And the list title today is <%= listTitle %>!</h3>
       <%  } %>
   </div>
 
@@ -31,9 +25,9 @@
       <!-- we created a form to add new item -->
         <form class="item" action="/" method="post">  
           <input type="text" name="newItem" autocomplete="off" placeholder="New Item">
-          <button type="submit" name="button">+</button>
+          <button type="submit" name="list" value="<%= listTitle %>" >+</button>
         </form>
   </div>
 
-</body>
-</html>
+  <%- include("footer"); -%>
+
