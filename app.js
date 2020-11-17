@@ -19,14 +19,14 @@ app.listen(3000, function(){
 });
 
 app.get('/', function(req, res){ // this is get request to the "/" route
-	let today = date.getDate();
-	let theDay = date.getDay();
+	const today = date.getDate();
+	const theDay = date.getDay();
 	res.render('list', {today : today, listTitle: theDay, newItems: items}); // we render the today and theDay variables to the ejs template list.ejs in views folder
 });
 
 app.post('/', function(req, res){ 
 	// console.log(req.body);
-	let item = req.body.newItem; // this contains the new item created from the web page 
+	const item = req.body.newItem; // this contains the new item created from the web page 
 	if(req.body.list == "Work List"){
 		workItems.push(item);
 		res.redirect('/work');
